@@ -1,0 +1,138 @@
+{
+  "entities": {
+    "DesaProfile": {
+      "title": "Profil Desa",
+      "description": "Profil pemerintah desa termasuk data pejabat dan kop surat",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "namaDesa": { "type": "string" },
+        "kodeDesa": { "type": "string" },
+        "kecamatan": { "type": "string" },
+        "kabupaten": { "type": "string" },
+        "provinsi": { "type": "string" },
+        "tahunAnggaran": { "type": "string" },
+        "alamatKantor": { "type": "string" },
+        "emailDesa": { "type": "string" },
+        "teleponDesa": { "type": "string" },
+        "kepalaDesa": { "type": "object" },
+        "bendaharaDesa": { "type": "object" },
+        "kaurKeuangan": { "type": "object" },
+        "sekretarisDesa": { "type": "object" },
+        "logoUrl": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "namaDesa", "kecamatan", "kabupaten", "provinsi"]
+    },
+    "SpjDocument": {
+      "title": "Dokumen SPJ",
+      "description": "Dokumen pertanggungjawaban belanja desa (Surat Pesanan, Faktur, BAPB, Daftar Hadir)",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "desaId": { "type": "string" },
+        "jenisDokumen": { "type": "string" },
+        "nomorSuratPesanan": { "type": "string" },
+        "nomorFaktur": { "type": "string" },
+        "nomorBapb": { "type": "string" },
+        "nomorDaftarHadir": { "type": "string" },
+        "tanggalSuratPesanan": { "type": "string" },
+        "tanggalFaktur": { "type": "string" },
+        "tanggalBapb": { "type": "string" },
+        "tanggalDaftarHadir": { "type": "string" },
+        "namaKegiatan": { "type": "string" },
+        "penyedia": { "type": "object" },
+        "rekeningBelanja": { "type": "string" },
+        "items": { "type": "array" },
+        "totalBelanja": { "type": "number" },
+        "totalPajak": { "type": "number" },
+        "jumlahDibayarkan": { "type": "number" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "desaId", "namaKegiatan", "totalBelanja"]
+    },
+    "MasterRekanan": {
+      "title": "Master Rekanan",
+      "description": "Data rekanan penyedia barang/jasa desa",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "desaId": { "type": "string" },
+        "namaPerusahaan": { "type": "string" },
+        "bentukUsaha": { "type": "string" },
+        "namaPimpinan": { "type": "string" },
+        "npwp": { "type": "string" },
+        "alamat": { "type": "string" },
+        "nomorRekening": { "type": "string" },
+        "namaBank": { "type": "string" },
+        "nomorHp": { "type": "string" }
+      },
+      "required": ["id", "namaPerusahaan"]
+    },
+    "MasterBarang": {
+      "title": "Master Standar Barang",
+      "description": "Daftar harga standar satuan barang desa",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "desaId": { "type": "string" },
+        "namaBarang": { "type": "string" },
+        "satuan": { "type": "string" },
+        "hargaSatuanStandar": { "type": "number" },
+        "kategori": { "type": "string" }
+      },
+      "required": ["id", "namaBarang", "satuan", "hargaSatuanStandar"]
+    },
+    "UserAccount": {
+      "title": "Akun Pengguna Desa",
+      "description": "Akun login pengelola SPJ desa",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "username": { "type": "string" },
+        "password": { "type": "string" },
+        "namaLengkap": { "type": "string" },
+        "role": { "type": "string" },
+        "desaId": { "type": "string" },
+        "isActive": { "type": "boolean" }
+      },
+      "required": ["id", "username", "role", "desaId"]
+    },
+    "SystemMeta": {
+      "title": "System Metadata",
+      "description": "Metadata konektivitas dan sinkronisasi sistem",
+      "type": "object",
+      "properties": {
+        "lastPing": { "type": "string" },
+        "lastSync": { "type": "string" }
+      }
+    }
+  },
+  "firestore": {
+    "/desa_profiles/{desaId}": {
+      "schema": "DesaProfile",
+      "description": "Penyimpanan data profil dan konfigurasi tiap desa"
+    },
+    "/spj_documents/{spjId}": {
+      "schema": "SpjDocument",
+      "description": "Penyimpanan seluruh arsip dan draft dokumen SPJ belanja"
+    },
+    "/master_rekanans/{rekananId}": {
+      "schema": "MasterRekanan",
+      "description": "Data master penyedia rekanan rekanan desa"
+    },
+    "/master_barangs/{barangId}": {
+      "schema": "MasterBarang",
+      "description": "Data master barang dan standar harga satuan"
+    },
+    "/user_accounts/{userId}": {
+      "schema": "UserAccount",
+      "description": "Data pengguna aplikasi SPJ per desa"
+    },
+    "/system_meta/{metaId}": {
+      "schema": "SystemMeta",
+      "description": "Koleksi diagnostik status koneksi Firebase"
+    }
+  }
+}

@@ -1,0 +1,159 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #020617;
+    color: #f8fafc;
+  }
+  /* Ensure form inputs, selects, textareas have high contrast text in dark theme */
+  input:not([type="checkbox"]):not([type="radio"]),
+  select,
+  textarea {
+    color: #ffffff;
+  }
+  input::placeholder,
+  textarea::placeholder {
+    color: #94a3b8;
+  }
+}
+
+/* Print Specific Rules for Official Kedinasan Documents */
+@media print {
+  @page {
+    size: 8.5in 13in;
+    margin: 20mm 12mm 10mm 12mm;
+  }
+
+  html,
+  body,
+  #root,
+  main,
+  section,
+  #printable-spj-document-area,
+  .print-page-wrapper,
+  .spj-print-page,
+  .print\:bg-white {
+    color-scheme: light !important;
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+    box-shadow: none !important;
+  }
+
+  /* Force white background on any wrapper/container classes during print to prevent dark/gray bleed */
+  [class*="bg-slate-"],
+  [class*="bg-gray-"],
+  [class*="bg-zinc-"],
+  [class*="bg-neutral-"],
+  [class*="bg-black"] {
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+  }
+
+  /* Ensure document cards are pure white */
+  .bg-white,
+  .spj-print-page,
+  .spj-print-page > div {
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+  }
+
+  /* Force font Arial for all printed official documents */
+  *,
+  .font-serif,
+  .font-sans,
+  body,
+  table,
+  tr,
+  th,
+  td,
+  p,
+  div,
+  span {
+    font-family: Arial, Helvetica, sans-serif !important;
+  }
+
+  /* Repeat table headers across pages when rows are numerous */
+  table {
+    page-break-inside: auto;
+    width: 100% !important;
+  }
+
+  thead {
+    display: table-header-group !important;
+  }
+
+  tfoot {
+    display: table-footer-group !important;
+  }
+
+  tr {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .print-avoid-break {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* Hide scrollbars, shadows, and interactive chrome */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  .print\:hidden {
+    display: none !important;
+  }
+
+  .print\:break-after-page {
+    page-break-after: always !important;
+    break-after: page !important;
+  }
+
+  .print\:p-0 {
+    padding: 0 !important;
+  }
+
+  .print\:m-0 {
+    margin: 0 !important;
+  }
+
+  .print\:shadow-none {
+    box-shadow: none !important;
+  }
+
+  .print\:max-w-none {
+    max-width: none !important;
+    width: 100% !important;
+  }
+
+  .print\:min-h-0 {
+    min-height: 0 !important;
+  }
+
+  .print\:h-auto {
+    height: auto !important;
+  }
+
+  /* Pengaturan halaman cetak dokumen: setinggi 1 halaman Folio (295mm) tanpa memaksa tinggi kaku yang menyebabkan tumpang tindih */
+  .spj-print-page {
+    box-sizing: border-box !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    min-height: 295mm !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+  }
+}

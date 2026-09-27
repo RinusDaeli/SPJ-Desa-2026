@@ -1,0 +1,8 @@
+{
+  "name": "Aplikasi SPJ Desa _ Hadry",
+  "description": "Aplikasi pembuatan Dokumen SPJ Desa otomatis mencakup Surat Pesanan, Faktur, Berita Acara Pemeriksaan dan Penerimaan Barang, serta Daftar Hadir dengan perhitungan pajak dan cetak PDF.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
