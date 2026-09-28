@@ -166,14 +166,14 @@ export const SpjForm: React.FC<SpjFormProps> = ({
         : (currentDesa.pelaksanaDDS.jabatan || 'Pelaksana Kegiatan DDS'))
   );
 
-  // Rekanan Penyedia
+  // Rekanan Penyedia (Default kosong agar dapat dipilih dari daftar rekanan)
   const [penyedia, setPenyedia] = useState(
     initialSpj?.penyedia || {
-      namaPerusahaan: 'UD. NIAT',
-      pimpinan: 'HADRIANUS DAELI',
-      jabatan: 'Pimpinan UD. NIAT',
-      alamat: 'Balogawu, Kecamatan Sirombu',
-      kota: 'Balogawu',
+      namaPerusahaan: '',
+      pimpinan: '',
+      jabatan: '',
+      alamat: '',
+      kota: '',
       noTelepon: '',
     }
   );
@@ -839,6 +839,23 @@ export const SpjForm: React.FC<SpjFormProps> = ({
                   Data Perusahaan / Toko / Penyedia Barang
                 </span>
                 <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setPenyedia({
+                        namaPerusahaan: '',
+                        pimpinan: '',
+                        jabatan: '',
+                        alamat: '',
+                        kota: '',
+                        noTelepon: '',
+                      })
+                    }
+                    className="flex items-center gap-1 bg-slate-900 hover:bg-slate-800 text-rose-400 hover:text-rose-300 border border-slate-700 px-2 py-1 rounded-lg text-xs font-semibold shadow-xs transition cursor-pointer"
+                    title="Kosongkan seluruh isian data rekanan"
+                  >
+                    <span>&times; Kosongkan Form</span>
+                  </button>
                   {onOpenMasterData && (
                     <button
                       type="button"
@@ -896,7 +913,7 @@ export const SpjForm: React.FC<SpjFormProps> = ({
                     onChange={(e) =>
                       setPenyedia({ ...penyedia, namaPerusahaan: e.target.value })
                     }
-                    placeholder="Contoh: UD. NIAT"
+                    placeholder="Pilih dari daftar rekanan di atas atau ketik nama toko..."
                     className="w-full p-2 border border-slate-700 rounded-lg bg-slate-900 text-white font-bold focus:ring-1 focus:ring-emerald-500"
                   />
                 </div>
@@ -911,7 +928,7 @@ export const SpjForm: React.FC<SpjFormProps> = ({
                     onChange={(e) =>
                       setPenyedia({ ...penyedia, pimpinan: e.target.value })
                     }
-                    placeholder="HADRIANUS DAELI"
+                    placeholder="Nama pemilik / pimpinan toko..."
                     className="w-full p-2 border border-slate-700 rounded-lg bg-slate-900 text-white uppercase font-semibold focus:ring-1 focus:ring-emerald-500"
                   />
                 </div>
@@ -927,7 +944,7 @@ export const SpjForm: React.FC<SpjFormProps> = ({
                   onChange={(e) =>
                     setPenyedia({ ...penyedia, jabatan: e.target.value })
                   }
-                  placeholder="Pimpinan UD. NIAT"
+                  placeholder="Contoh: Pemilik / Direktur / Pimpinan"
                   className="w-full p-2 border border-slate-700 rounded-lg bg-slate-900 text-white focus:ring-1 focus:ring-emerald-500"
                 />
               </div>
@@ -943,7 +960,7 @@ export const SpjForm: React.FC<SpjFormProps> = ({
                     onChange={(e) =>
                       setPenyedia({ ...penyedia, alamat: e.target.value })
                     }
-                    placeholder="Balogawu, Kecamatan Sirombu"
+                    placeholder="Alamat toko..."
                     className="w-full p-2 border border-slate-700 rounded-lg bg-slate-900 text-white focus:ring-1 focus:ring-emerald-500"
                   />
                 </div>
@@ -957,7 +974,7 @@ export const SpjForm: React.FC<SpjFormProps> = ({
                     onChange={(e) =>
                       setPenyedia({ ...penyedia, kota: e.target.value })
                     }
-                    placeholder="Balogawu"
+                    placeholder="Kota / Kabupaten toko berada..."
                     className="w-full p-2 border border-slate-700 rounded-lg bg-slate-900 text-white focus:ring-1 focus:ring-emerald-500"
                   />
                 </div>

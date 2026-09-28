@@ -677,48 +677,16 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     // Real-time listener: Master Rekanan (Katalog Bersama Semua Desa)
     const unsubRekanans = subscribeToRekanans((cloudRekanans) => {
       if (!mounted) return;
-      if (cloudRekanans && cloudRekanans.length > 0) {
-        setMasterRekanans((prevLocal) => {
-          const cloudIds = new Set(cloudRekanans.map((r) => r.id));
-          const missingInCloud = prevLocal.filter((r) => !cloudIds.has(r.id));
-          if (missingInCloud.length > 0) {
-            missingInCloud.forEach((r) => saveRekananToCloud(r).catch(() => {}));
-            return [...cloudRekanans, ...missingInCloud];
-          }
-          return cloudRekanans;
-        });
-      } else if (cloudRekanans && cloudRekanans.length === 0) {
-        // Jika Firestore master_rekanans masih kosong, inisialisasi dengan data rekanan lokal
-        setMasterRekanans((current) => {
-          if (current.length > 0) {
-            current.forEach((r) => saveRekananToCloud(r).catch(() => {}));
-          }
-          return current;
-        });
+      if (cloudRekanans) {
+        setMasterRekanans(cloudRekanans);
       }
     });
 
     // Real-time listener: Master Barang (Katalog Bersama Semua Desa)
     const unsubBarangs = subscribeToBarangs((cloudBarangs) => {
       if (!mounted) return;
-      if (cloudBarangs && cloudBarangs.length > 0) {
-        setMasterBarangs((prevLocal) => {
-          const cloudIds = new Set(cloudBarangs.map((b) => b.id));
-          const missingInCloud = prevLocal.filter((b) => !cloudIds.has(b.id));
-          if (missingInCloud.length > 0) {
-            missingInCloud.forEach((b) => saveBarangToCloud(b).catch(() => {}));
-            return [...cloudBarangs, ...missingInCloud];
-          }
-          return cloudBarangs;
-        });
-      } else if (cloudBarangs && cloudBarangs.length === 0) {
-        // Jika Firestore master_barangs masih kosong, inisialisasi dengan data barang lokal
-        setMasterBarangs((current) => {
-          if (current.length > 0) {
-            current.forEach((b) => saveBarangToCloud(b).catch(() => {}));
-          }
-          return current;
-        });
+      if (cloudBarangs) {
+        setMasterBarangs(cloudBarangs);
       }
     });
 
@@ -1420,24 +1388,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         return [...otherSpjs, ...incoming];
       });
 
-      // 3. Gabungkan master rekanan & barang
-      if (pkg.rekanans && pkg.rekanans.length > 0) {
-        setMasterRekanans((prev) => {
-          const map = new Map(prev.map((r) => [r.id, r]));
-          pkg.rekanans.forEach((r) => map.set(r.id, r));
-          return Array.from(map.values());
-        });
-      }
-
-      if (pkg.barangs && pkg.barangs.length > 0) {
-        setMasterBarangs((prev) => {
-          const map = new Map(prev.map((b) => [b.id, b]));
-          pkg.barangs.forEach((b) => map.set(b.id, b));
-          return Array.from(map.values());
-        });
-      }
-
-      // 4. Update akun login desa ini
+      // 3. Update akun login desa ini
       if (pkg.users && pkg.users.length > 0) {
         setUsers((prev) => {
           const otherUsers = prev.filter((u) => u.desaId !== dId);

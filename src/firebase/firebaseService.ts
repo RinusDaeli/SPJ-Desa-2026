@@ -387,6 +387,14 @@ export async function bootstrapInitialCloudDataIfNeeded(initialData: {
   users: UserAccount[];
 }): Promise<boolean> {
   try {
+    // Periksa apakah database sudah pernah di-bootstrap sebelumnya.
+    // Jika sudah, JANGAN PERNAH mengisi ulang data yang telah dihapus pengguna!
+    const bootstrapRef = doc(db, 'system_settings', 'bootstrap');
+    const bootstrapSnap = await getDoc(bootstrapRef);
+    if (bootstrapSnap.exists() && bootstrapSnap.data()?.completed) {
+      return false;
+    }
+
     let bootstrappedAny = false;
 
     // 1. Periksa & Inisialisasi Master Rekanan (Katalog Bersama Semua Desa)
@@ -449,6 +457,13 @@ export async function bootstrapInitialCloudDataIfNeeded(initialData: {
       bootstrappedAny = true;
     }
 
+    // Tandai inisialisasi awal telah selesai secara permanen
+    await setDoc(bootstrapRef, {
+      completed: true,
+      completedAt: new Date().toISOString(),
+      appName: 'Aplikasi SPJ Desa Nias Barat',
+    });
+
     if (bootstrappedAny) {
       console.log('Inisialisasi data awal ke Cloud Firestore selesai!');
     }
@@ -460,20 +475,46 @@ export async function bootstrapInitialCloudDataIfNeeded(initialData: {
 }
 
 /**
- * Sinkronkan seluruh data Master Rekanan & Master Barang ke Cloud Firebase
+ * Sinkronkan seluruh data Master Rekanan & Master Barang ke Cloud Firebase.
+ * Menghapus data yang telah dihapus pengguna dari Cloud secara permanen.
  */
 export async function syncAllMasterDataToCloud(
   rekanans: MasterRekanan[],
   barangs: MasterBarang[]
 ): Promise<{ success: boolean; message: string }> {
   try {
+    const currentRekananIds = new Set(rekanans.map((r) => r.id));
+    const currentBarangIds = new Set(barangs.map((b) => b.id));
+
+    // Periksa dokumen yang ada di Cloud
+    const existingRekanansSnap = await getDocs(collection(db, 'master_rekanans'));
+    const existingBarangsSnap = await getDocs(collection(db, 'master_barangs'));
+
     const batch = writeBatch(db);
+
+    // Hapus dokumen rekanan di Cloud yang sudah tidak ada di list
+    existingRekanansSnap.forEach((d) => {
+      if (!currentRekananIds.has(d.id)) {
+        batch.delete(d.ref);
+      }
+    });
+
+    // Hapus dokumen barang di Cloud yang sudah tidak ada di list
+    existingBarangsSnap.forEach((d) => {
+      if (!currentBarangIds.has(d.id)) {
+        batch.delete(d.ref);
+      }
+    });
+
+    // Simpan semua data rekanan aktif
     for (const r of rekanans) {
-      batch.set(doc(db, 'master_rekanans', r.id), cleanForFirestore(r), { merge: true });
+      batch.set(doc(db, 'master_rekanans', r.id), cleanForFirestore(r));
     }
+    // Simpan semua data barang aktif
     for (const b of barangs) {
-      batch.set(doc(db, 'master_barangs', b.id), cleanForFirestore(b), { merge: true });
+      batch.set(doc(db, 'master_barangs', b.id), cleanForFirestore(b));
     }
+
     await batch.commit();
     return {
       success: true,
@@ -552,21 +593,11 @@ export async function uploadDesaToCloud(
       batch.set(userRef, cleanForFirestore(user), { merge: true });
     }
 
-    // 4. Sinkronkan juga Master Rekanan & Master Barang ke koleksi global di Firestore
-    for (const r of allRekanans) {
-      const rekRef = doc(db, 'master_rekanans', r.id);
-      batch.set(rekRef, cleanForFirestore(r), { merge: true });
-    }
-    for (const b of allBarangs) {
-      const brgRef = doc(db, 'master_barangs', b.id);
-      batch.set(brgRef, cleanForFirestore(b), { merge: true });
-    }
-
     await batch.commit();
 
     return {
       success: true,
-      message: `Data Desa ${desa.namaDesa} (${spjsForDesa.length} SPJ) & Master Data berhasil diunggah ke Cloud Firebase!`,
+      message: `Data Desa ${desa.namaDesa} (${spjsForDesa.length} SPJ) berhasil diunggah ke Cloud Firebase!`,
     };
   } catch (error: any) {
     console.error('Error uploading desa to cloud:', error);
