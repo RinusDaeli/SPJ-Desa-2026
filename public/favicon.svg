@@ -1,219 +1,196 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="100%" height="100%">
+  <!-- Definitions for color richness and crisp rendering -->
   <defs>
-    <!-- Background Gradients -->
-    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1e1b4b" />
-      <stop offset="35%" stop-color="#4338ca" />
-      <stop offset="70%" stop-color="#7c3aed" />
-      <stop offset="100%" stop-color="#db2777" />
+    <linearGradient id="redSwooshGrad" x1="10%" y1="10%" x2="90%" y2="90%">
+      <stop offset="0%" stop-color="#ff1a1a" />
+      <stop offset="50%" stop-color="#ea0000" />
+      <stop offset="100%" stop-color="#d60000" />
     </linearGradient>
-
-    <linearGradient id="wave1" x1="0%" y1="100%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.8" />
-      <stop offset="50%" stop-color="#a855f7" stop-opacity="0.75" />
-      <stop offset="100%" stop-color="#f43f5e" stop-opacity="0.9" />
-    </linearGradient>
-
-    <linearGradient id="wave2" x1="100%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.6" />
-      <stop offset="60%" stop-color="#8b5cf6" stop-opacity="0.8" />
-      <stop offset="100%" stop-color="#ec4899" stop-opacity="0.7" />
-    </linearGradient>
-
-    <!-- Skin Gradients -->
-    <radialGradient id="skinBase" cx="50%" cy="45%" r="55%">
-      <stop offset="0%" stop-color="#e8b58f" />
-      <stop offset="60%" stop-color="#d69b72" />
-      <stop offset="100%" stop-color="#bc7e54" />
-    </radialGradient>
-
-    <linearGradient id="neckGrad" x1="50%" y1="0%" x2="50%" y2="100%">
-      <stop offset="0%" stop-color="#a46740" />
-      <stop offset="35%" stop-color="#c4875f" />
-      <stop offset="100%" stop-color="#d69b72" />
-    </linearGradient>
-
-    <linearGradient id="earGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#d69b72" />
-      <stop offset="100%" stop-color="#b6774e" />
-    </linearGradient>
-
-    <!-- Hair Gradients -->
-    <linearGradient id="hairGrad" x1="30%" y1="0%" x2="70%" y2="100%">
-      <stop offset="0%" stop-color="#4a372d" />
-      <stop offset="40%" stop-color="#2a1e17" />
-      <stop offset="100%" stop-color="#150f0c" />
-    </linearGradient>
-
-    <linearGradient id="hairHighlight" x1="0%" y1="0%" x2="100%" y2="50%">
-      <stop offset="0%" stop-color="#6b5042" stop-opacity="0.8" />
-      <stop offset="100%" stop-color="#3d2b22" stop-opacity="0" />
-    </linearGradient>
-
-    <!-- Clothes Gradients -->
-    <linearGradient id="shirtGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#3b82f6" />
-      <stop offset="40%" stop-color="#2563eb" />
-      <stop offset="100%" stop-color="#1d4ed8" />
-    </linearGradient>
-
-    <linearGradient id="collarGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#4b8bf8" />
-      <stop offset="100%" stop-color="#1e40af" />
-    </linearGradient>
-
-    <!-- AirPod Gradient -->
-    <linearGradient id="airpodGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#ffffff" />
-      <stop offset="70%" stop-color="#f1f5f9" />
-      <stop offset="100%" stop-color="#cbd5e1" />
-    </linearGradient>
-
-    <!-- Eye Gradient -->
-    <radialGradient id="irisGrad" cx="45%" cy="40%" r="50%">
-      <stop offset="0%" stop-color="#80471c" />
-      <stop offset="65%" stop-color="#45230c" />
-      <stop offset="100%" stop-color="#1f0f05" />
-    </radialGradient>
-
-    <clipPath id="squircleClip">
-      <rect width="512" height="512" rx="112" />
-    </clipPath>
   </defs>
 
-  <!-- Squircle Rounded Container -->
-  <g clip-path="url(#squircleClip)">
-    <!-- Dynamic Fluid Background -->
-    <rect width="512" height="512" fill="url(#bgGrad)" />
+  <!-- Group with crisp antialiasing -->
+  <g shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
+    <!-- RED ORBITAL SWOOSH -->
+    <!-- Sweeps around from top, looping past S on left, under P, and curving up on bottom-right -->
+    <path
+      d="M 412,110
+         C 320,55 210,0 128,15
+         C 45,30 2,100 0,195
+         C -2,290 42,425 118,545
+         C 194,665 305,765 448,842
+         C 580,913 720,985 818,975
+         C 860,970 882,915 888,836
+         C 882,880 840,928 780,936
+         C 680,948 545,880 430,812
+         C 315,744 212,642 148,525
+         C 95,428 68,315 76,215
+         C 82,135 125,72 188,48
+         C 248,25 330,55 412,110
+         Z"
+      fill="url(#redSwooshGrad)"
+    />
 
-    <!-- Flowing Wave 1 -->
-    <path d="M-50,220 C60,140 180,310 320,180 C440,60 520,120 570,90 L570,550 L-50,550 Z" fill="url(#wave1)" />
+    <!-- MAIN TEXT: SPJ (Heavy Bold Pitch Black) -->
+    <g fill="#000000">
+      <!-- Letter S -->
+      <path
+        d="M 172,590
+           C 168,640 185,695 222,728
+           C 255,758 312,764 365,752
+           C 405,743 430,718 434,685
+           L 356,660
+           C 350,676 338,690 315,695
+           C 290,700 262,696 250,682
+           C 238,668 238,648 245,630
+           C 255,605 285,585 335,560
+           C 402,525 435,482 432,410
+           C 428,348 395,305 348,288
+           C 305,272 245,274 200,296
+           C 174,310 152,335 142,370
+           L 220,392
+           C 226,375 238,358 262,352
+           C 285,346 312,348 326,360
+           C 340,372 342,390 338,405
+           C 330,430 305,448 258,472
+           C 198,504 175,542 172,590
+           Z"
+      />
 
-    <!-- Flowing Wave 2 -->
-    <path d="M-50,380 C120,290 260,420 400,320 C480,260 540,290 570,270 L570,550 L-50,550 Z" fill="url(#wave2)" />
+      <!-- Letter P -->
+      <path
+        d="M 454,295
+           L 454,765
+           L 540,765
+           L 540,580
+           L 615,580
+           C 675,580 725,548 726,438
+           C 727,330 675,295 615,295
+           L 454,295
+           Z
+           M 540,368
+           L 605,368
+           C 638,368 652,390 652,438
+           C 652,485 638,508 605,508
+           L 540,508
+           L 540,368
+           Z"
+      />
 
-    <!-- Ambient Glow Ribbons -->
-    <path d="M0,160 Q150,110 300,240 T520,140" fill="none" stroke="#a855f7" stroke-width="18" opacity="0.4" stroke-linecap="round" />
-    <path d="M-20,320 Q160,220 340,360 T540,260" fill="none" stroke="#ec4899" stroke-width="22" opacity="0.45" stroke-linecap="round" />
+      <!-- Letter J -->
+      <path
+        d="M 865,295
+           L 865,595
+           C 865,655 842,705 802,735
+           C 765,765 712,768 670,750
+           C 635,735 612,705 605,665
+           L 685,645
+           C 690,665 700,682 720,688
+           C 742,694 766,690 778,675
+           C 788,662 790,642 790,610
+           L 790,295
+           L 865,295
+           Z"
+      />
+    </g>
 
-    <!-- AVATAR CHARACTER -->
-    <g id="avatar">
-      <!-- Shoulders & Blue Polo Shirt -->
-      <path d="M70,512 C72,425 125,385 190,370 L322,370 C387,385 440,425 442,512 Z" fill="url(#shirtGrad)" />
+    <!-- SUBTEXT: RINUS D (Bold Electric Royal Blue) -->
+    <!-- Rendered as pristine high-contrast bold vector paths -->
+    <g fill="#0018f5">
+      <!-- R -->
+      <path
+        d="M 22,885
+           L 58,885
+           C 75,885 88,895 88,912
+           C 88,926 78,935 65,938
+           L 90,985
+           L 72,985
+           L 50,942
+           L 38,942
+           L 38,985
+           L 22,985
+           Z
+           M 38,900
+           L 38,928
+           L 55,928
+           C 66,928 72,922 72,914
+           C 72,906 66,900 55,900
+           Z"
+      />
 
-      <!-- Shirt Collar Details -->
-      <!-- Left Collar Flap -->
-      <path d="M190,370 L256,450 L236,470 L140,405 Z" fill="url(#collarGrad)" />
-      <!-- Right Collar Flap -->
-      <path d="M322,370 L256,450 L276,470 L372,405 Z" fill="url(#collarGrad)" />
-      <!-- Inner Placket -->
-      <path d="M245,435 L267,435 L263,512 L249,512 Z" fill="#1e3a8a" />
-      <!-- Placket Button -->
-      <circle cx="256" cy="485" r="5" fill="#93c5fd" />
-      <circle cx="256" cy="485" r="3" fill="#ffffff" />
+      <!-- I -->
+      <path
+        d="M 104,885
+           L 120,885
+           L 120,985
+           L 104,985
+           Z"
+      />
 
-      <!-- Neck & Throat -->
-      <path d="M210,320 L210,385 C210,405 240,418 256,418 C272,418 302,405 302,385 L302,320 Z" fill="url(#neckGrad)" />
-      <!-- Throat Shadow -->
-      <path d="M222,330 C240,346 272,346 290,330 L296,365 C282,375 268,380 256,380 C244,380 230,375 216,365 Z" fill="#995e38" opacity="0.45" />
+      <!-- N -->
+      <path
+        d="M 138,885
+           L 155,885
+           L 182,945
+           L 182,885
+           L 197,885
+           L 197,985
+           L 180,985
+           L 153,925
+           L 153,985
+           L 138,985
+           Z"
+      />
 
-      <!-- Ears -->
-      <!-- Left Ear (Viewer's Left) -->
-      <path d="M165,225 C146,225 142,275 160,295 C170,305 180,298 184,285 Z" fill="url(#earGrad)" />
-      <path d="M164,242 C154,246 153,275 165,282" fill="none" stroke="#a46740" stroke-width="4.5" stroke-linecap="round" />
+      <!-- U -->
+      <path
+        d="M 216,885
+           L 232,885
+           L 232,950
+           C 232,965 240,974 252,974
+           C 264,974 272,965 272,950
+           L 272,885
+           L 288,885
+           L 288,950
+           C 288,975 273,988 252,988
+           C 231,988 216,975 216,950
+           Z"
+      />
 
-      <!-- Right Ear (Viewer's Right) with White AirPod -->
-      <path d="M347,225 C366,225 370,275 352,295 C342,305 332,298 328,285 Z" fill="url(#earGrad)" />
-      <path d="M348,242 C358,246 359,275 347,282" fill="none" stroke="#a46740" stroke-width="4.5" stroke-linecap="round" />
+      <!-- S -->
+      <path
+        d="M 306,962
+           L 320,958
+           C 322,968 329,974 340,974
+           C 350,974 358,969 358,960
+           C 358,952 350,947 335,942
+           C 316,936 308,927 308,913
+           C 308,896 322,884 341,884
+           C 360,884 372,895 374,910
+           L 360,913
+           C 358,904 352,898 341,898
+           C 331,898 324,903 324,910
+           C 324,917 330,922 345,927
+           C 365,934 374,944 374,959
+           C 374,977 359,988 340,988
+           C 320,988 308,977 306,962
+           Z"
+      />
 
-      <!-- WHITE WIRELESS EARBUD (AirPod) -->
-      <!-- Earbud Body -->
-      <ellipse cx="360" cy="254" rx="8" ry="11" fill="url(#airpodGrad)" transform="rotate(15 360 254)" />
-      <!-- Earbud Stem -->
-      <path d="M363,260 L367,298 C367,301 364,303 361,302 C358,301 357,298 358,295 L356,263 Z" fill="url(#airpodGrad)" />
-      <!-- Earbud Sensor/Accent Dot -->
-      <circle cx="360" cy="252" r="2.2" fill="#64748b" opacity="0.6" />
-      <!-- Chrome Stem Tip -->
-      <ellipse cx="364" cy="299" rx="3.5" ry="2" fill="#cbd5e1" />
-
-      <!-- Head & Face Base -->
-      <path d="M174,215 C172,130 340,130 338,215 C338,285 318,345 256,346 C194,345 174,285 174,215 Z" fill="url(#skinBase)" />
-
-      <!-- Soft Cheek Shading & Highlight -->
-      <ellipse cx="205" cy="265" rx="20" ry="14" fill="#ff7f7f" opacity="0.14" />
-      <ellipse cx="307" cy="265" rx="20" ry="14" fill="#ff7f7f" opacity="0.14" />
-
-      <!-- Forehead Light Glow -->
-      <ellipse cx="256" cy="195" rx="36" ry="18" fill="#ffffff" opacity="0.18" />
-
-      <!-- Beauty Mark / Mole under right eye (viewer's left cheek) -->
-      <circle cx="218" cy="254" r="2.2" fill="#633c24" />
-
-      <!-- NOSE -->
-      <!-- Nose Bridge & Tip -->
-      <path d="M256,208 C252,228 246,242 243,248 C240,253 243,260 251,261 C256,261.5 261,261.5 266,260 C273,258 274,251 270,246 C266,240 260,228 256,208 Z" fill="#c4855d" opacity="0.5" />
-      <ellipse cx="256" cy="254" rx="10" ry="6.5" fill="#dc9f77" />
-      <!-- Nostrils -->
-      <ellipse cx="244" cy="256" rx="3.5" ry="2.5" fill="#884f2b" opacity="0.75" />
-      <ellipse cx="268" cy="256" rx="3.5" ry="2.5" fill="#884f2b" opacity="0.75" />
-      <ellipse cx="256" cy="252" rx="4" ry="2.5" fill="#ffffff" opacity="0.3" />
-
-      <!-- EYES -->
-      <!-- Left Eye (Viewer's Left) -->
-      <g id="leftEye">
-        <path d="M192,216 C202,204 224,204 234,216 C224,228 202,228 192,216 Z" fill="#ffffff" />
-        <ellipse cx="214" cy="216" rx="10" ry="10" fill="url(#irisGrad)" />
-        <circle cx="214" cy="216" r="5.5" fill="#0f0703" />
-        <circle cx="211" cy="212" r="3.2" fill="#ffffff" />
-        <circle cx="217" cy="218" r="1.3" fill="#ffffff" opacity="0.8" />
-        <!-- Eyelash / Eyelid Line -->
-        <path d="M189,216 C201,202 225,202 237,216" fill="none" stroke="#231711" stroke-width="4.5" stroke-linecap="round" />
-        <path d="M198,202 C208,197 220,197 229,202" fill="none" stroke="#8d5633" stroke-width="2" opacity="0.5" stroke-linecap="round" />
-      </g>
-
-      <!-- Right Eye (Viewer's Right) -->
-      <g id="rightEye">
-        <path d="M278,216 C288,204 310,204 320,216 C310,228 288,228 278,216 Z" fill="#ffffff" />
-        <ellipse cx="298" cy="216" rx="10" ry="10" fill="url(#irisGrad)" />
-        <circle cx="298" cy="216" r="5.5" fill="#0f0703" />
-        <circle cx="295" cy="212" r="3.2" fill="#ffffff" />
-        <circle cx="301" cy="218" r="1.3" fill="#ffffff" opacity="0.8" />
-        <!-- Eyelash / Eyelid Line -->
-        <path d="M275,216 C287,202 311,202 323,216" fill="none" stroke="#231711" stroke-width="4.5" stroke-linecap="round" />
-        <path d="M283,202 C292,197 304,197 314,202" fill="none" stroke="#8d5633" stroke-width="2" opacity="0.5" stroke-linecap="round" />
-      </g>
-
-      <!-- EYEBROWS -->
-      <!-- Left Eyebrow -->
-      <path d="M188,192 C198,181 224,180 236,187 C224,185 200,186 188,192 Z" fill="#201510" />
-      <!-- Right Eyebrow -->
-      <path d="M324,192 C314,181 288,180 276,187 C288,185 312,186 324,192 Z" fill="#201510" />
-
-      <!-- MOUTH & SMILE -->
-      <path d="M232,291 C244,300 268,300 280,291" fill="none" stroke="#944737" stroke-width="4" stroke-linecap="round" />
-      <!-- Upper Lip -->
-      <path d="M236,289 C246,286 266,286 276,289 C268,292 244,292 236,289 Z" fill="#ba6353" opacity="0.85" />
-      <!-- Lower Lip Highlight -->
-      <path d="M243,294 C250,297 262,297 269,294" fill="none" stroke="#e08677" stroke-width="2.5" stroke-linecap="round" opacity="0.7" />
-
-      <!-- MUSTACHE (Crisp, Trimmed) -->
-      <path d="M224,281 C235,274 250,277 256,282 C262,277 277,274 288,281 C276,286 262,284 256,287 C250,284 236,286 224,281 Z" fill="#231711" />
-
-      <!-- CHIN BEARD & STUBBLE SHADOW -->
-      <path d="M248,303 C252,302 260,302 264,303 C261,310 251,310 248,303 Z" fill="#2d1e17" opacity="0.85" />
-      <path d="M216,290 C226,322 286,322 296,290 C286,335 226,335 216,290 Z" fill="#231711" opacity="0.22" />
-
-      <!-- HAIR (Voluminous Styled Pompadour with Highlights) -->
-      <path d="M172,195 C160,170 162,118 190,82 C220,44 300,40 338,72 C376,108 368,168 340,195 C336,170 338,150 326,134 C310,112 285,110 265,118 C242,128 230,146 220,158 C202,154 186,168 172,195 Z" fill="url(#hairGrad)" />
-
-      <!-- Hair Waves & Strands -->
-      <path d="M198,78 C240,42 322,48 350,96 C326,72 250,68 214,102 Z" fill="url(#hairHighlight)" />
-      <path d="M236,105 C275,76 332,84 346,128 C328,106 280,102 248,122 Z" fill="#583d30" opacity="0.65" />
-      <path d="M174,136 C186,105 216,92 238,100 C218,108 196,124 186,148 Z" fill="#4d3529" opacity="0.75" />
-
-      <!-- Sideburns -->
-      <path d="M175,200 L175,240 C173,235 168,232 168,225 Z" fill="#231711" />
-      <path d="M337,200 L337,240 C339,235 344,232 344,225 Z" fill="#231711" />
+      <!-- D -->
+      <path
+        d="M 402,885
+           L 435,885
+           C 460,885 476,904 476,935
+           C 476,966 460,985 435,985
+           L 402,985
+           Z
+           M 418,900
+           L 418,970
+           L 434,970
+           C 450,970 460,958 460,935
+           C 460,912 450,900 434,900
+           Z"
+      />
     </g>
   </g>
 </svg>
